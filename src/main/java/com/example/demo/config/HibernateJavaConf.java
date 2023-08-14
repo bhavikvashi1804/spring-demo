@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.model.employee.Employee;
+import com.example.demo.model.person.Person;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +41,12 @@ public class HibernateJavaConf {
         localSessionFactoryBean.setDataSource(dataSource());
         localSessionFactoryBean.setHibernateProperties(hibernateProperties());
         localSessionFactoryBean.setMappingLocations(loadResources());
+        // Way 1: Exact Class: specifying the exact classes to be mapped with DB
+        // localSessionFactoryBean.setAnnotatedClasses(Person.class, Employee.class);
+        // Way 2: Base Package: provide the base package to scan, base package & class which has @Entity will be mapped
+        localSessionFactoryBean.setPackagesToScan("com.example.demo.model");
+        // Way 3: Annotated Packages
+        // localSessionFactoryBean.setAnnotatedPackages("com.example.demo.model.person");
         return localSessionFactoryBean;
     }
 
