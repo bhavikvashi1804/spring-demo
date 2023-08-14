@@ -28,7 +28,7 @@ public class StudentService {
 
         System.out.println("---------------Store a new Student -----------------");
         Student student = new Student(22, "Dhruvik","Patel");
-        studentDAO.saveStudent(student);
+        //studentDAO.saveStudent(student);
 
         System.out.println("---------------Fetched All Student Data -----------------");
         List<Student> fetchedStudentData = fetchAllStudents();

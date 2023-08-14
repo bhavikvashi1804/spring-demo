@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.example.demo.model.employee">
+
+    <class name="Employee" table="EMP_TB_EMP">
+        <id name="employeeId" column="emp_id"/>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+    </class>
+
+</hibernate-mapping>
