@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.example.demo.model.student">
+
+    <class name="Student" table="STUDENT_TB_STUDENT">
+        <id name="studentId" column="student_id"/>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName" column="last_name"/>
+    </class>
+
+    <sql-query name="studentCount">
+        SELECT COUNT(1) FROM STUDENT_TB_STUDENT
+    </sql-query>
+
+</hibernate-mapping>
