@@ -53,7 +53,7 @@ public class HibernateJavaConf {
         // Way 1: Exact Class: specifying the exact classes to be mapped with DB
         // localSessionFactoryBean.setAnnotatedClasses(Person.class, Employee.class);
         // Way 2: Base Package: provide the base package to scan, base package & class which has @Entity will be mapped
-        // localSessionFactoryBean.setPackagesToScan("com.example.demo.model");
+        localSessionFactoryBean.setPackagesToScan("com.example.demo.model");
         // Way 3: Annotated Packages
         // localSessionFactoryBean.setAnnotatedPackages("com.example.demo.model.person");
         return localSessionFactoryBean;
@@ -86,6 +86,9 @@ public class HibernateJavaConf {
     private final Properties hibernateProperties() {
         System.out.println("Active Profile: "+ environment.getActiveProfiles()[0]);
         System.out.println("Active URL: " + url);
+        System.out.println("Dialect: " + dialect);
+        System.out.println("DDL Auto: "+ ddlAuto);
+        System.out.println("Driver Class Name: "+ driverClassName);
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", dialect);
         properties.setProperty("hibernate.show_sql", showSql);
