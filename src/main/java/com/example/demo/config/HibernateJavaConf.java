@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -14,17 +12,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration(value = "hibernateJavaConf")
 @EnableTransactionManagement
-@PropertySources(
-        value = {
-                @PropertySource("classpath:application.properties"),
-                @PropertySource("classpath:application-${spring.profiles.active}.properties")
-        })
 public class HibernateJavaConf {
 
     @Autowired
@@ -49,6 +41,9 @@ public class HibernateJavaConf {
     @Value("${spring.profiles.active}")
     private String activeProfile;
 
+    @Autowired
+    Environment environment;
+
     @Bean(value = "javaConfigSessionFactory")
     public LocalSessionFactoryBean localSessionFactoryBean() {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
@@ -58,7 +53,7 @@ public class HibernateJavaConf {
         // Way 1: Exact Class: specifying the exact classes to be mapped with DB
         // localSessionFactoryBean.setAnnotatedClasses(Person.class, Employee.class);
         // Way 2: Base Package: provide the base package to scan, base package & class which has @Entity will be mapped
-        localSessionFactoryBean.setPackagesToScan("com.example.demo.model");
+        // localSessionFactoryBean.setPackagesToScan("com.example.demo.model");
         // Way 3: Annotated Packages
         // localSessionFactoryBean.setAnnotatedPackages("com.example.demo.model.person");
         return localSessionFactoryBean;
@@ -89,6 +84,8 @@ public class HibernateJavaConf {
     }
 
     private final Properties hibernateProperties() {
+        System.out.println("Active Profile: "+ environment.getActiveProfiles()[0]);
+        System.out.println("Active URL: " + url);
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", dialect);
         properties.setProperty("hibernate.show_sql", showSql);
