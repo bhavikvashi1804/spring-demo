@@ -13,4 +13,13 @@
         <constructor-arg value="Spring Demo Application"/>
     </bean>
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+                <value>classpath:application-${spring.profiles.active}.properties</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
