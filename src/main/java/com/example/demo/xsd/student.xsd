@@ -4,6 +4,9 @@
     xmlns="https://www.bhavik.demo/student"
     elementFormDefault="qualified">
 
+    <xs:import namespace="https://www.bhavik.demo/student" schemaLocation="https://raw.githubusercontent.com/bhavikvashi1804/spring-demo/master/src/main/java/com/example/demo/xsd/student.xsd"/>
+
+
     <xs:element name="student">
         <xs:complexType>
             <xs:sequence>
