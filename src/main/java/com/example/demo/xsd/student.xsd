@@ -11,8 +11,16 @@
                 <xs:element name="LastName" type="xs:string" />
                 <xs:element name="Age" type="xs:int" />
                 <xs:element name="Marks" type="xs:decimal" />
+                <xs:element name="Gender" type="GenderType" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:simpleType name="GenderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M" />
+            <xs:enumeration value="N" />
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
